@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm,landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{calligra} 
+\usepackage{wallpaper}
+\usepackage{csquotes}
+\usepackage[nolinks,final,forget]{qrcode}
+\usepackage{color}
+\usepackage{ragged2e}
+\usepackage[none]{hyphenat}
+\usepackage{datatool}
+
+\definecolor{blue}{rgb}{0,0,1}
+\definecolor{red}{cmyk}{0, 1, 1, 0.2}
+\definecolor{gold}{cmyk}{0,0.16,1,0.50}
+
+\DTLloaddb{names}{data.csv}
+
+\begin{document}
+
+\linespread{1}\selectfont
+\pagestyle{empty}
+\TileWallPaper{1\paperwidth}{1\paperheight}{border.eps}
+
+\DTLforeach{names}{
+\prefix=Prefix, \name=Name, \inst=Institute, \place=Place, \qrn=Machine}
+{
+	\vspace*{0.5cm}
+	
+	\begin{minipage}[r]{1.5in}
+		\centering
+		\vspace{0.5cm}
+		\begin{center}
+			\includegraphics[scale=0.05]{latex.pdf}	
+		\end{center}
+	\end{minipage}
+	\vspace{0.1cm}
+		\begin{minipage}[r]{8in}
+			\centering
+			\begin{center}
+				\Large{
+						\textbf{\LARGE \color{blue} Organizing Institute Name}\\
+						\vspace{-0.20cm}
+						\textbf{\large \color{blue} Organizing Institute Address Line-1}\\
+						\vspace{-0.20cm}
+						\textbf{\large \color{blue} Organizing Institute Address Line-2}\\
+						\vspace{-0.20cm}
+						\textbf{\large \color{blue} Organizing Institute Address Line-3}
+			  }
+			\end{center}
+		\end{minipage}
+	
+	\vspace{0.4cm}
+	
+	\begin{center}
+		\textbf{\huge \color{red} Program Title Line-1}\\ 
+		\vspace{0.2cm}
+		\textbf{\huge \textit{\color{red} Program Title Line-2}}\\
+	\end{center}
+	
+	\vspace{0.01cm}
+	
+	\begin{center}
+	\calligra \Huge\textbf{\color{gold} Certificate of Participation}
+	\end{center}
+	
+	\begin{tabularx}{0.80\linewidth}{ l X }
+		& 
+		\Large
+		{\textit{This is to certify that} 
+			     \textbf{\color{blue} \prefix~\name, \inst, \place,}
+			     \textit{has participated in the \textit{Program Title}, 
+				organized by the Organizing Institute, during Dates.}}
+		\\
+	\end{tabularx}
+	\hspace{0.5cm}
+		\qrcode[height=3cm]
+		{ 
+			QR-data:\ \qrn			
+		}		
+	
+	\vspace{0.8cm}
+	\begin{table}[b]
+		\centering
+		\begin{tabular}{>{\centering\arraybackslash}p{7cm}>{\centering\arraybackslash}p{7cm}>{\centering\arraybackslash}p{7cm}}
+			%\includegraphics[scale=0.20]{} &\includegraphics[scale=0.35,trim={0cm, 0.8cm, 0cm, 0cm},clip]{} &{\includegraphics[scale=0.20,trim={0cm, 4.5cm, 0cm, 10cm},clip]{}} \\ Use this if you want to insert signature images
+			\textbf{\Large Dignitary-1} & \textbf{\Large Dignitary-2} & \textbf{\Large Dignitary-3} \\
+			\large Designation        & \large Designation             & \large Designation   \\                      
+		\end{tabular}
+	\end{table}
+	\newpage
+}
+
+\end{document} 
